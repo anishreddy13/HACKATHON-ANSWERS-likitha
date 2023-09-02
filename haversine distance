@@ -1,0 +1,32 @@
+import math
+
+def haversine_distance(lat1, lon1, lat2, lon2):
+    
+    radius = 6371
+    
+    
+    lat1 = math.radians(lat1)
+    lon1 = math.radians(lon1)
+    lat2 = math.radians(lat2)
+    lon2 = math.radians(lon2)
+    
+    # Haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = math.sin(dlat/2)*2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)*2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    distance = radius * c
+    
+    return distance
+
+pickup_latitude = 40.73835373
+pickup_longitude = -73.99981689
+dropoff_latitude = 40.72321701
+dropoff_longitude = -73.99951172
+
+distance = haversine_distance(pickup_latitude, pickup_longitude, dropoff_latitude, dropoff_longitude)
+
+if distance == 0.0:
+    print("The Haversine distance for this ride is 0.0.")
+else:
+    print("The Haversine distance for this ride is not 0.0.")
